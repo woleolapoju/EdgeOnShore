@@ -1,0 +1,4 @@
+﻿1.	Reason for INACTIVE in REGISTERS
+2.	Impliment the Search of Manadate though FrmSearch
+3.	Impliment the CREDIT side of Transaction
+4.	

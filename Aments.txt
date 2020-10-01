@@ -1,0 +1,807 @@
+﻿Add field to Payment
+PVNo	nvarchar(150)	Checked
+___________________________________________________________
+
+REPLACE SP
+
+ALTER PROCEDURE [dbo].[InsertPayment]
+	(@PayValueDate 	[datetime],
+	 @RefNo 	[int],
+	 @Name 	[nvarchar](150),
+	 @Address 	[nvarchar](250),
+	 @BankName	[nvarchar](150),
+	 @BankAcctNo 	[nvarchar](50),
+	 @BankCode 	[nvarchar](50),
+	 @SchoolID 	[int],
+	 @SchName 	[nvarchar](150),
+	 @Amount 	[money],
+	 @PayDetails 	[nvarchar](4000),
+	 @MandateNo 	[nvarchar](50),
+	 @Source 	[nvarchar](50),
+	 @PayType 	[nvarchar](4000),
+	 @dIndex  bigint,
+	@MandateSn	int,
+	@MandatePrefix	nvarchar(50),
+	@Remark	nvarchar(4000),
+	@Username	nvarchar(50),
+	@EmailAddress nvarchar(50),
+	@Telephone nvarchar(50),
+	@Period nvarchar(500),
+	@IDNo nvarchar(150),
+	@PVNo nvarchar(150))
+
+AS INSERT INTO [Payment] 
+	 ([PayValueDate],
+	 [RefNo],
+	 [Name],
+	 [Address],
+	 [BankName],
+	 [BankAcctNo],
+	 [BankCode],
+	 [SchoolID],
+	 [SchName],
+	 [Amount],
+	 [PayDetails],
+	 [MandateNo],
+	 [Source],
+	 [PayType],
+	 [dIndex],
+	 [MandateSn],
+	[MandatePrefix],
+	[Remark],
+	[Authorised],
+	[AuthorisedBy],
+	[Username],
+	[EmailAddress],
+	[Telephone],[Period],[IDNo],[PVNo])
+ 
+VALUES 
+	( @PayValueDate,
+	 @RefNo,
+	@Name,
+	 @Address,
+	 @BankName,
+	 @BankAcctNo,
+	 @BankCode,
+	 @SchoolID,
+	 @SchName,
+	 @Amount,
+	 @PayDetails,
+	 @MandateNo,
+	 @Source,
+	 @PayType,
+	 @dIndex,
+	@MandateSn,
+	 @MandatePrefix,
+	@Remark,
+	0,
+	'',
+	@Username,
+	@EmailAddress,
+	@Telephone,@Period,@IDNo,@PVNo)
+
+_____________________________________________________________________________________________
+
+Shakara RptPayment
+
+_______________________________________________________________
+
+Add field to SystemParameters
+
+Signatory1	nvarchar(150)	Checked
+Signatory2	nvarchar(150)	Checked
+_________________________________________________________________
+
+Create New Table PaymentDeductions
+
+CREATE TABLE [dbo].[PaymentDeductions](
+	[MandateNo] [nvarchar](50) NOT NULL,
+	[dIndex] [bigint] NOT NULL,
+	[PayValueDate] [datetime] NULL,
+	[RefNo] [int] NULL,
+	[Name] [nvarchar](150) NULL,
+	[Amount] [money] NULL,
+	[PayDetails] [nvarchar](4000) NULL,
+	[PVNo] [nvarchar](150) NULL,
+	[Source_MandateNo] [nvarchar](50) NOT NULL,
+	[Source_dIndex] [bigint] NOT NULL,
+	[Source] [nvarchar](50) NULL,
+	[Remark] [nvarchar](4000) NULL,
+	[Authorised] [bit] NULL,
+	[AuthorisedBy] [nvarchar](50) NULL,
+	[Username] [nvarchar](50) NULL,
+	[MainAction] [nvarchar](50) NULL,
+	[TINNo] [nvarchar](50) NULL,
+	[Address] [nvarchar](4000) NULL,
+	[InvoiceNo] [nvarchar](50) NULL,
+	[ContractDate] [nvarchar](50) NULL,
+	[ContractAmount] [money] NULL,
+	[Rate] [float] NULL,
+	[ContractType] [nvarchar](150) NULL,
+ CONSTRAINT [PK_PaymentDeduction] PRIMARY KEY CLUSTERED 
+(
+	[MandateNo] ASC,
+	[dIndex] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+
+
+
+
+
+_______________________________________________________________________
+
+NOTE ********
+
+Create UNIQUE KEY
+
+[Source_MandateNo] ,
+	[Source_dIndex] ,
+	[Source],
+	[MainAction]
+	as Unique Key
+
+***********
+_________________________________________________________________________________
+
+NE SP
+
+
+CREATE PROCEDURE [dbo].[InsertPaymentDeductions]
+	(@PayValueDate 	[datetime],
+	 @RefNo 	[int],
+	 @Name 	[nvarchar](150),
+	  @PayDetails 	[nvarchar](4000),
+	  @PVNo nvarchar(150),
+	 @Source_MandateNo	[nvarchar](250),
+	 @Source_dIndex 	[int],
+	 @Source 	[nvarchar](50),
+	 @Remark	nvarchar(4000),
+	@Amount 	[money],
+@dIndex  bigint,
+@MandateNo 	[nvarchar](50),
+	@Username	nvarchar(50),
+	@MainAction nvarchar(50),
+	@TINNo nvarchar(50),
+	@Address	nvarchar(4000),
+	@InvoiceNo	nvarchar(50),
+	@ContractDate	nvarchar(50),
+	@ContractAmount	money,
+	@Rate	float,
+	@ContractType  nvarchar(150))
+
+AS INSERT INTO [PaymentDeductions] 
+	([PayValueDate],
+	[RefNo],
+	[Name],
+	[PayDetails],
+	[PVNo],
+	[Source_MandateNo],
+	[Source_dIndex],
+	[Source],
+	[Remark],
+	[Amount],
+	[dIndex],
+	[MandateNo],
+	[Username],
+	[Authorised],[AuthorisedBy],[MainAction],[TINNo],[Address],
+	[InvoiceNo],
+	[ContractDate],
+	[ContractAmount],
+	[Rate],[ContractType])
+ 
+VALUES 
+	( @PayValueDate,
+	 @RefNo,
+	@Name,
+	 @PayDetails,
+	 @PVNo,
+	 @Source_MandateNo,
+	 @Source_dIndex,
+	 @Source,
+	 @Remark,
+	 @Amount,
+	 @dIndex,
+	 @MandateNo,
+	 @Username,
+	0,
+	'',@MainAction,@TINNo,
+	@Address,
+	@InvoiceNo,
+	@ContractDate,
+	@ContractAmount,
+	@Rate,@ContractType)
+
+__________________________________________________________________________________
+
+NEW SP
+
+CREATE PROCEDURE [dbo].[Fetch4PaymentMandateNoCheck] 
+@MandateNo   nvarchar(50)
+AS
+
+SELECT MandateNo FROM  Payment WHERE MandateNo=@MandateNo 
+UNION
+SELECT MandateNo FROM  PaymentDeductions WHERE MandateNo=@MandateNo 
+
+_______________________________________________________________________
+
+NEW SP
+
+CREATE PROCEDURE [dbo].[DeletePaymentDeductions]
+	(@MandateNo 	[nvarchar](16))
+
+AS DELETE [PaymentDeductions] 
+
+WHERE 
+	 [MandateNo]	 = @MandateNo
+
+
+______________________________________________________________________
+
+
+NEW SP
+
+CREATE PROCEDURE [dbo].[FetchPaymentDeduction] 
+@MandateNo   nvarchar(50)
+AS
+
+SELECT * FROM  PaymentDeductions WHERE MandateNo=@MandateNo ORDER BY dIndex
+
+______________________________________________________________________________
+
+NEW VIEW RptPaymentDeductions
+
+SELECT  *,'Coy' AS Company FROM dbo.PaymentDeductions
+
+________________________________________________________________________________
+
+
+NEW VIEW RptPaymentDeductions4WHTListings
+
+
+SELECT  * FROM dbo.PaymentDeductions WHERE (MainAction = 'WHT')
+
+_________________________________________________________________________________
+
+REPLACE VIEW Ledger
+
+
+SELECT        MandatePrefix, MandateSn, MandateNo, dIndex, PayValueDate, RefNo, Name, Address, BankName, BankAcctNo, BankCode, SchoolID, SchName, Amount, PayDetails, PVNo, Source, Period, PayType, Remark, 
+                         Authorised, AuthorisedBy, Username
+FROM            dbo.Payment
+UNION
+SELECT        '' AS MandatePrefix, 0 AS MandateSn, MandateNo, dIndex, PayValueDate, RefNo, Name, Address, MainAction AS BankName, TINNo AS BankAcctNo, '' AS BankCode, '' AS SchoolID, '' AS SchName, Amount, 
+                         PayDetails, PVNo, Source_MandateNo AS Source, '' AS Period, '' AS PayType, Remark, Authorised, AuthorisedBy, Username
+FROM            PaymentDeductions
+
+______________________________________________________________________________________
+
+
+===============================================================================================================
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+add field 
+
+Category	nvarchar(100)	Checked
+Region	nvarchar(50)	Checked
+
+to RegisterStudent, RegisterSchool
+
+___________________________________________________________________
+
+add field 
+
+Region	nvarchar(50)	Checked
+
+to RegisterVendor
+__________________________________________________________________
+
+add field 
+
+InterventionLine	nvarchar(150)	Checked
+
+Payments, PaymentDeductions
+
+__________________________________________________________________
+UPDATE data with blanks
+__________________________________________________________________
+
+REPLACE SP
+
+ALTER PROCEDURE [dbo].[InsertRegisterSchool]
+	(@Sn  int,
+	@SchName nvarchar(150),
+	@SchAddress nvarchar(600),
+	@State nvarchar(50),
+	@EmailAddress nvarchar(50),
+	@Telephone nvarchar(50),
+	@BankName nvarchar(150),
+	@BankAcctNo nvarchar(50),
+	@BankCode nvarchar(50),
+	@BankAddress nvarchar(600),
+	@Remark nvarchar(4000),
+	@InActive bit,
+	@IDNo nvarchar(150),
+	@Category nvarchar(100),
+	@Region  nvarchar(50))
+AS
+if @Sn=0
+BEGIN
+INSERT INTO [dbo].[RegisterSchool]
+           ([Sn]
+		   ,[SchName]
+           ,[SchAddress]
+           ,[State]
+           ,[EmailAddress]
+           ,[Telephone]
+           ,[BankName]
+           ,[BankAcctNo]
+           ,[BankCode]
+           ,[BankAddress]
+           ,[Remark]
+           ,[InActive],[IDNo],[Category],[Region])
+  (SELECT ISNULL(MAX(Sn),0)+1,@SchName,
+           @SchAddress, 
+           @State, 
+           @EmailAddress, 
+           @Telephone, 
+           @BankName, 
+           @BankAcctNo, 
+           @BankCode, 
+           @BankAddress,
+           @Remark, 
+           @InActive,@IDNo,@Category,@Region FROM RegisterSchool)
+END
+ELSE
+BEGIN
+INSERT INTO [dbo].[RegisterSchool]
+           ([Sn]
+		   ,[SchName]
+           ,[SchAddress]
+           ,[State]
+           ,[EmailAddress]
+           ,[Telephone]
+           ,[BankName]
+           ,[BankAcctNo]
+           ,[BankCode]
+           ,[BankAddress]
+           ,[Remark]
+           ,[InActive],[IDNo],[Category],[Region])
+VALUES(@Sn,@SchName,
+           @SchAddress, 
+           @State, 
+           @EmailAddress, 
+           @Telephone, 
+           @BankName, 
+           @BankAcctNo, 
+           @BankCode, 
+           @BankAddress,
+           @Remark, 
+           @InActive,@IDNo,@Category,@Region)
+END
+
+______________________________________________________________________________________________
+
+
+REPLACE SP
+
+ALTER PROCEDURE [dbo].[InsertRegisterStudent]
+	(@Sn  int,
+	@Name nvarchar(150),
+	@SchoolID int,
+	@Degree nvarchar(150),
+	@CourseOfStudy nvarchar(150),
+	@StartYear int,
+	@EndYear int,
+	@LGA nvarchar(100),
+	@Address nvarchar(600),
+	@State nvarchar(50),
+	@EmailAddress nvarchar(50),
+	@Telephone nvarchar(50),
+	@BankName nvarchar(150),
+	@BankAcctNo nvarchar(50),
+	@BankCode nvarchar(50),
+	@BankAddress nvarchar(600),
+	@Remark nvarchar(4000),
+	@InActive bit,
+	@SchName nvarchar(500),
+	@IDNo nvarchar(150),
+	@Category nvarchar(100),
+	@Region  nvarchar(50))
+AS
+
+if @Sn=0
+BEGIN
+INSERT INTO [dbo].[RegisterStudent]
+           ([Sn]
+           ,[Name]
+           ,[SchoolID]
+           ,[Degree]
+           ,[CourseOfStudy]
+           ,[StartYear]
+           ,[EndYear]
+           ,[LGA]
+           ,[State]
+           ,[Address]
+           ,[EmailAddress]
+           ,[Telephone]
+           ,[BankName]
+           ,[BankAcctNo]
+           ,[BankCode]
+           ,[BankAddress]
+           ,[Remark]
+           ,[InActive]
+		   ,[SchName],[IDNo],[Category],[Region])
+  (SELECT ISNULL(MAX(Sn),0)+1,@Name,@SchoolID,@Degree,@CourseOfStudy,@StartYear,@EndYear,@LGA,@State,
+           @Address, 
+           @EmailAddress, 
+           @Telephone, 
+           @BankName, 
+           @BankAcctNo, 
+           @BankCode, 
+           @BankAddress,
+           @Remark, 
+           @InActive,@SchName,@IDNo,@Category,@Region FROM RegisterStudent)
+END
+ELSE
+BEGIN
+INSERT INTO [dbo].[RegisterStudent]
+           ([Sn]
+           ,[Name]
+           ,[SchoolID]
+           ,[Degree]
+           ,[CourseOfStudy]
+           ,[StartYear]
+           ,[EndYear]
+           ,[LGA]
+           ,[State]
+           ,[Address]
+           ,[EmailAddress]
+           ,[Telephone]
+           ,[BankName]
+           ,[BankAcctNo]
+           ,[BankCode]
+           ,[BankAddress]
+           ,[Remark]
+           ,[InActive],[SchName],[IDNo],[Category],[Region])
+VALUES(@Sn,@Name,@SchoolID,@Degree,@CourseOfStudy,@StartYear,@EndYear,@LGA,@State,
+           @Address, 
+           @EmailAddress, 
+           @Telephone, 
+           @BankName, 
+           @BankAcctNo, 
+           @BankCode, 
+           @BankAddress,
+           @Remark, 
+           @InActive,@SchName,@IDNo,@Category,@Region)
+END
+
+__________________________________________________________________________________________________________
+
+REPLACE SP
+
+ALTER PROCEDURE [dbo].[InsertRegisterVendor]
+	(@Sn  int,
+	@Name nvarchar(150),
+	@Address nvarchar(600),
+	@TINNo nvarchar(50),
+	@EmailAddress nvarchar(50),
+	@Telephone nvarchar(50),
+	@BankName nvarchar(150),
+	@BankAcctNo nvarchar(50),
+	@BankCode nvarchar(50),
+	@BankAddress nvarchar(600),
+	@Remark nvarchar(4000),
+	@InActive bit,
+	@Source	nvarchar(50),
+	@Category nvarchar(100),
+	@IDNo nvarchar(150),
+	@Region  nvarchar(50))
+AS
+if @Sn=0
+BEGIN
+INSERT INTO [dbo].[RegisterVendor]
+           ([Sn]
+		   ,[Name]
+           ,[Address]
+           ,[TINNo]
+           ,[EmailAddress]
+           ,[Telephone]
+           ,[BankName]
+           ,[BankAcctNo]
+           ,[BankCode]
+           ,[BankAddress]
+           ,[Remark]
+           ,[InActive],[Source],[Category],IDNo,[Region])
+  (SELECT ISNULL(MAX(Sn),0)+1,@Name,
+           @Address, 
+           @TINNO, 
+           @EmailAddress, 
+           @Telephone, 
+           @BankName, 
+           @BankAcctNo, 
+           @BankCode, 
+           @BankAddress,
+           @Remark, 
+           @InActive,@Source,@Category,@IDNo,@Region FROM RegisterVendor)
+END
+ELSE
+BEGIN
+INSERT INTO [dbo].[RegisterVendor]
+           ([Sn]
+		   ,[Name]
+           ,[Address]
+           ,[TINNo]
+           ,[EmailAddress]
+           ,[Telephone]
+           ,[BankName]
+           ,[BankAcctNo]
+           ,[BankCode]
+           ,[BankAddress]
+           ,[Remark]
+           ,[InActive],[Source],[Category],IDNo,[Region])
+VALUES(@Sn,@Name,
+           @Address, 
+           @TINNo, 
+           @EmailAddress, 
+           @Telephone, 
+           @BankName, 
+           @BankAcctNo, 
+           @BankCode, 
+           @BankAddress,
+           @Remark, 
+           @InActive,@Source,@Category,@IDNo,@Region)
+END
+
+__________________________________________________________________________________________________
+
+REPLACE SP
+
+ALTER PROCEDURE [dbo].[InsertPayment]
+	(@PayValueDate 	[datetime],
+	 @RefNo 	[int],
+	 @Name 	[nvarchar](150),
+	 @Address 	[nvarchar](250),
+	 @BankName	[nvarchar](150),
+	 @BankAcctNo 	[nvarchar](50),
+	 @BankCode 	[nvarchar](50),
+	 @SchoolID 	[int],
+	 @SchName 	[nvarchar](150),
+	 @Amount 	[money],
+	 @PayDetails 	[nvarchar](4000),
+	 @MandateNo 	[nvarchar](50),
+	 @Source 	[nvarchar](50),
+	 @PayType 	[nvarchar](4000),
+	 @dIndex  bigint,
+	@MandateSn	int,
+	@MandatePrefix	nvarchar(50),
+	@Remark	nvarchar(4000),
+	@Username	nvarchar(50),
+	@EmailAddress nvarchar(50),
+	@Telephone nvarchar(50),
+	@Period nvarchar(500),
+	@IDNo nvarchar(150),
+	@PVNo nvarchar(150),
+	@InterventionLine	nvarchar(150))
+
+AS INSERT INTO [Payment] 
+	 ([PayValueDate],
+	 [RefNo],
+	 [Name],
+	 [Address],
+	 [BankName],
+	 [BankAcctNo],
+	 [BankCode],
+	 [SchoolID],
+	 [SchName],
+	 [Amount],
+	 [PayDetails],
+	 [MandateNo],
+	 [Source],
+	 [PayType],
+	 [dIndex],
+	 [MandateSn],
+	[MandatePrefix],
+	[Remark],
+	[Authorised],
+	[AuthorisedBy],
+	[Username],
+	[EmailAddress],
+	[Telephone],[Period],[IDNo],[PVNo],[InterventionLine])
+ 
+VALUES 
+	( @PayValueDate,
+	 @RefNo,
+	@Name,
+	 @Address,
+	 @BankName,
+	 @BankAcctNo,
+	 @BankCode,
+	 @SchoolID,
+	 @SchName,
+	 @Amount,
+	 @PayDetails,
+	 @MandateNo,
+	 @Source,
+	 @PayType,
+	 @dIndex,
+	@MandateSn,
+	 @MandatePrefix,
+	@Remark,
+	0,
+	'',
+	@Username,
+	@EmailAddress,
+	@Telephone,@Period,@IDNo,@PVNo,@InterventionLine)
+
+__________________________________________________________________________________________
+
+REPLACE SP
+
+ALTER PROCEDURE [dbo].[InsertPaymentDeductions]
+	(@PayValueDate 	[datetime],
+	 @RefNo 	[int],
+	 @Name 	[nvarchar](150),
+	  @PayDetails 	[nvarchar](4000),
+	  @PVNo nvarchar(150),
+	 @Source_MandateNo	[nvarchar](250),
+	 @Source_dIndex 	[int],
+	 @Source 	[nvarchar](50),
+	 @Remark	nvarchar(4000),
+	@Amount 	[money],
+@dIndex  bigint,
+@MandateNo 	[nvarchar](50),
+	@Username	nvarchar(50),
+	@MainAction nvarchar(50),
+	@TINNo nvarchar(50),
+	@Address	nvarchar(4000),
+	@InvoiceNo	nvarchar(50),
+	@ContractDate	nvarchar(50),
+	@ContractAmount	money,
+	@Rate	float,
+	@ContractType  nvarchar(150),
+	@InterventionLine nvarchar(150))
+
+AS INSERT INTO [PaymentDeductions] 
+	([PayValueDate],
+	[RefNo],
+	[Name],
+	[PayDetails],
+	[PVNo],
+	[Source_MandateNo],
+	[Source_dIndex],
+	[Source],
+	[Remark],
+	[Amount],
+	[dIndex],
+	[MandateNo],
+	[Username],
+	[Authorised],[AuthorisedBy],[MainAction],[TINNo],[Address],
+	[InvoiceNo],
+	[ContractDate],
+	[ContractAmount],
+	[Rate],[ContractType],[InterventionLine])
+ 
+VALUES 
+	( @PayValueDate,
+	 @RefNo,
+	@Name,
+	 @PayDetails,
+	 @PVNo,
+	 @Source_MandateNo,
+	 @Source_dIndex,
+	 @Source,
+	 @Remark,
+	 @Amount,
+	 @dIndex,
+	 @MandateNo,
+	 @Username,
+	0,
+	'',@MainAction,@TINNo,
+	@Address,
+	@InvoiceNo,
+	@ContractDate,
+	@ContractAmount,
+	@Rate,@ContractType,@InterventionLine)
+
+___________________________________________________________________________________
+
+NEW TABLE
+
+CREATE TABLE [dbo].[InterventionLine](
+	[InterventionLine] [nvarchar](150) NOT NULL,
+ CONSTRAINT [PK_InterventionLine] PRIMARY KEY CLUSTERED 
+(
+	[InterventionLine] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+
+________________________________________________________________________________
+
+REPLACE SP
+
+ALTER PROCEDURE [dbo].[FetchPaymentDetails] 
+(@Source  nvarchar(50),
+@RefNo  nvarchar(50),
+@TheName nvarchar(300),
+@StartDate  datetime,
+@EndDate   datetime)
+
+AS
+
+SELECT MandateNo,PayValueDate, Amount,PayType, BankName, BankAcctNo, BankCode, Period,  PayDetails, SchoolID,SchName,Remark FROM Ledger 
+WHERE Source=@Source AND RefNo=@RefNo AND  [Name]=@TheName AND PayValueDate>=@StartDate AND PayValueDate<=@EndDate
+
+_________________________________________________________________________________
+
+Shakara VIEW
+RptPayment
+RptPaymentDeductions
+
+_________________________________________________________________________________
+
+NEW VIEW
+
+RptRegisterSchool
+
+SELECT  * , 'Coy' AS Company FROM dbo.RegisterSchool
+
+___________________________________________________________________________________
+
+NEW VIEW
+RptRegisterStudent
+
+SELECT * , 'Coy' AS Company FROM dbo.RegisterStudent
+_______________________________________________________________________________________
+
+NEW VIEW
+RptRegisterVendor
+
+
+SELECT  *, 'Coy' AS Company FROM  dbo.RegisterVendor
+
+____________________________________________________________________________________
+
+NEW VIEW
+PaymentWithRegionAndCategory
+
+SELECT        dbo.Payment.*, dbo.RegisterSchool.Category, dbo.RegisterSchool.Region
+FROM            dbo.Payment LEFT OUTER JOIN
+                         dbo.RegisterSchool ON dbo.Payment.RefNo = dbo.RegisterSchool.Sn
+WHERE        (dbo.Payment.Source = 'SCHOOL')
+UNION
+SELECT        dbo.Payment.*, dbo.RegisterStudent.Category, dbo.RegisterStudent.Region
+FROM            dbo.Payment LEFT OUTER JOIN
+                         dbo.RegisterStudent ON dbo.Payment.RefNo = dbo.RegisterStudent.Sn
+WHERE        (dbo.Payment.Source = 'STUDENT')
+UNION
+SELECT        dbo.Payment.*, dbo.RegisterVendor.Category, dbo.RegisterVendor.Region
+FROM            dbo.Payment LEFT OUTER JOIN
+                         dbo.RegisterVendor ON dbo.Payment.RefNo = dbo.RegisterVendor.Sn
+WHERE        (dbo.Payment.Source = 'STAFF' or dbo.Payment.Source = 'VENDOR' )
+
+___________________________________________________________________________________________
+
+NEW VIEW
+RptPaymentWithRegionAndCategory
+
+SELECT *,'Coy' AS Company FROM  PaymentWithRegionAndCategory
+
+_____________________________________________________________________________________________
+
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ MAY 2019 +++++++++++++++++++++++++++++++++++++++
+
+Increase field parameter length to 50 from 16
+
+in 
+
+@MandateNo  nvarchar(50)
+DeletePayment and DeletePaymentDeduction
+_________________________________________________________________________________________________
+

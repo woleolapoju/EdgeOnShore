@@ -1,0 +1,15 @@
+BANK CODE,ACCOUNT NUMBER,ACCOUNT TYPE,PAYABLE AMOUNT,SHORT DESCRIPTION,LONG DESCRIPTION,NAME,MOBILE,EMAIL, WITHOLDING TAX(%),TAX OFFICE
+11,11348987,20,25000,salary payment,salary payment for June ,OTUN SEYI,8045678765,seyi@yahoo.com,0,0
+FBN,,AS DEFAULT,,,,,WHEN IS N/A MAKE 0 AS DEFAULT,WHEN IS N/A MAKE 0 AS DEFAULT,AS DEFAULT,AS DEFAULT
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,File Format for :,,,,,,,,
+,,Vendors payments upload,,,,,,,,
+,,School Payments Upload,,,,,,,,
+,,Students Payments Upload,,,,,,,,
+,,and Staff Claims Payments Upload,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+Note That the ending above will not appeared on the Files to upload but rather as parameter for data gathering.,,,,,,,,,,

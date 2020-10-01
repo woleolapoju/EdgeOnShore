@@ -1,0 +1,332 @@
+﻿add new field
+
+RegisterSchool
+RegisterStudent
+RegisterVendor
+Payment
+
+IDNo	nvarchar(150)	Checked
+________________________________________________________________
+
+REPLACE SP
+
+ALTER PROCEDURE [dbo].[InsertPayment]
+	(@PayValueDate 	[datetime],
+	 @RefNo 	[int],
+	 @Name 	[nvarchar](150),
+	 @Address 	[nvarchar](250),
+	 @BankName	[nvarchar](150),
+	 @BankAcctNo 	[nvarchar](50),
+	 @BankCode 	[nvarchar](50),
+	 @SchoolID 	[int],
+	 @SchName 	[nvarchar](150),
+	 @Amount 	[money],
+	 @PayDetails 	[nvarchar](4000),
+	 @MandateNo 	[nvarchar](50),
+	 @Source 	[nvarchar](50),
+	 @PayType 	[nvarchar](4000),
+	 @dIndex  bigint,
+	@MandateSn	int,
+	@MandatePrefix	nvarchar(50),
+	@Remark	nvarchar(4000),
+	@Username	nvarchar(50),
+	@EmailAddress nvarchar(50),
+	@Telephone nvarchar(50),
+	@Period nvarchar(500),
+	@IDNo nvarchar(150))
+
+AS INSERT INTO [Payment] 
+	 ([PayValueDate],
+	 [RefNo],
+	 [Name],
+	 [Address],
+	 [BankName],
+	 [BankAcctNo],
+	 [BankCode],
+	 [SchoolID],
+	 [SchName],
+	 [Amount],
+	 [PayDetails],
+	 [MandateNo],
+	 [Source],
+	 [PayType],
+	 [dIndex],
+	 [MandateSn],
+	[MandatePrefix],
+	[Remark],
+	[Authorised],
+	[AuthorisedBy],
+	[Username],
+	[EmailAddress],
+	[Telephone],[Period],[IDNo])
+ 
+VALUES 
+	( @PayValueDate,
+	 @RefNo,
+	@Name,
+	 @Address,
+	 @BankName,
+	 @BankAcctNo,
+	 @BankCode,
+	 @SchoolID,
+	 @SchName,
+	 @Amount,
+	 @PayDetails,
+	 @MandateNo,
+	 @Source,
+	 @PayType,
+	 @dIndex,
+	@MandateSn,
+	 @MandatePrefix,
+	@Remark,
+	0,
+	'',
+	@Username,
+	@EmailAddress,
+	@Telephone,@Period,@IDNo)
+
+	______________________________________________________________________
+
+
+	REPLACE SP
+
+	ALTER PROCEDURE [dbo].[InsertRegisterSchool]
+	(@Sn  int,
+	@SchName nvarchar(150),
+	@SchAddress nvarchar(600),
+	@State nvarchar(50),
+	@EmailAddress nvarchar(50),
+	@Telephone nvarchar(50),
+	@BankName nvarchar(150),
+	@BankAcctNo nvarchar(50),
+	@BankCode nvarchar(50),
+	@BankAddress nvarchar(600),
+	@Remark nvarchar(4000),
+	@InActive bit,
+	@IDNo nvarchar(150))
+AS
+if @Sn=0
+BEGIN
+INSERT INTO [dbo].[RegisterSchool]
+           ([Sn]
+		   ,[SchName]
+           ,[SchAddress]
+           ,[State]
+           ,[EmailAddress]
+           ,[Telephone]
+           ,[BankName]
+           ,[BankAcctNo]
+           ,[BankCode]
+           ,[BankAddress]
+           ,[Remark]
+           ,[InActive],[IDNo])
+  (SELECT ISNULL(MAX(Sn),0)+1,@SchName,
+           @SchAddress, 
+           @State, 
+           @EmailAddress, 
+           @Telephone, 
+           @BankName, 
+           @BankAcctNo, 
+           @BankCode, 
+           @BankAddress,
+           @Remark, 
+           @InActive,@IDNo FROM RegisterSchool)
+END
+ELSE
+BEGIN
+INSERT INTO [dbo].[RegisterSchool]
+           ([Sn]
+		   ,[SchName]
+           ,[SchAddress]
+           ,[State]
+           ,[EmailAddress]
+           ,[Telephone]
+           ,[BankName]
+           ,[BankAcctNo]
+           ,[BankCode]
+           ,[BankAddress]
+           ,[Remark]
+           ,[InActive],[IDNo])
+VALUES(@Sn,@SchName,
+           @SchAddress, 
+           @State, 
+           @EmailAddress, 
+           @Telephone, 
+           @BankName, 
+           @BankAcctNo, 
+           @BankCode, 
+           @BankAddress,
+           @Remark, 
+           @InActive,@IDNo)
+END
+
+_________________________________________________________________
+
+REPLACE SP
+
+ALTER PROCEDURE [dbo].[InsertRegisterStudent]
+	(@Sn  int,
+	@Name nvarchar(150),
+	@SchoolID int,
+	@Degree nvarchar(150),
+	@CourseOfStudy nvarchar(150),
+	@StartYear int,
+	@EndYear int,
+	@LGA nvarchar(100),
+	@Address nvarchar(600),
+	@State nvarchar(50),
+	@EmailAddress nvarchar(50),
+	@Telephone nvarchar(50),
+	@BankName nvarchar(150),
+	@BankAcctNo nvarchar(50),
+	@BankCode nvarchar(50),
+	@BankAddress nvarchar(600),
+	@Remark nvarchar(4000),
+	@InActive bit,
+	@SchName nvarchar(500),
+	@IDNo nvarchar(150))
+AS
+
+if @Sn=0
+BEGIN
+INSERT INTO [dbo].[RegisterStudent]
+           ([Sn]
+           ,[Name]
+           ,[SchoolID]
+           ,[Degree]
+           ,[CourseOfStudy]
+           ,[StartYear]
+           ,[EndYear]
+           ,[LGA]
+           ,[State]
+           ,[Address]
+           ,[EmailAddress]
+           ,[Telephone]
+           ,[BankName]
+           ,[BankAcctNo]
+           ,[BankCode]
+           ,[BankAddress]
+           ,[Remark]
+           ,[InActive]
+		   ,[SchName],[IDNo])
+  (SELECT ISNULL(MAX(Sn),0)+1,@Name,@SchoolID,@Degree,@CourseOfStudy,@StartYear,@EndYear,@LGA,@State,
+           @Address, 
+           @EmailAddress, 
+           @Telephone, 
+           @BankName, 
+           @BankAcctNo, 
+           @BankCode, 
+           @BankAddress,
+           @Remark, 
+           @InActive,@SchName,@IDNo FROM RegisterStudent)
+END
+ELSE
+BEGIN
+INSERT INTO [dbo].[RegisterStudent]
+           ([Sn]
+           ,[Name]
+           ,[SchoolID]
+           ,[Degree]
+           ,[CourseOfStudy]
+           ,[StartYear]
+           ,[EndYear]
+           ,[LGA]
+           ,[State]
+           ,[Address]
+           ,[EmailAddress]
+           ,[Telephone]
+           ,[BankName]
+           ,[BankAcctNo]
+           ,[BankCode]
+           ,[BankAddress]
+           ,[Remark]
+           ,[InActive],[SchName],[IDNo])
+VALUES(@Sn,@Name,@SchoolID,@Degree,@CourseOfStudy,@StartYear,@EndYear,@LGA,@State,
+           @Address, 
+           @EmailAddress, 
+           @Telephone, 
+           @BankName, 
+           @BankAcctNo, 
+           @BankCode, 
+           @BankAddress,
+           @Remark, 
+           @InActive,@SchName,@IDNo)
+END
+
+______________________________________________________________________
+
+REPLACE SP
+
+ALTER PROCEDURE [dbo].[InsertRegisterVendor]
+	(@Sn  int,
+	@Name nvarchar(150),
+	@Address nvarchar(600),
+	@TINNo nvarchar(50),
+	@EmailAddress nvarchar(50),
+	@Telephone nvarchar(50),
+	@BankName nvarchar(150),
+	@BankAcctNo nvarchar(50),
+	@BankCode nvarchar(50),
+	@BankAddress nvarchar(600),
+	@Remark nvarchar(4000),
+	@InActive bit,
+	@Source	nvarchar(50),
+	@Category nvarchar(100),
+	@IDNo nvarchar(150))
+AS
+if @Sn=0
+BEGIN
+INSERT INTO [dbo].[RegisterVendor]
+           ([Sn]
+		   ,[Name]
+           ,[Address]
+           ,[TINNo]
+           ,[EmailAddress]
+           ,[Telephone]
+           ,[BankName]
+           ,[BankAcctNo]
+           ,[BankCode]
+           ,[BankAddress]
+           ,[Remark]
+           ,[InActive],[Source],[Category],IDNo)
+  (SELECT ISNULL(MAX(Sn),0)+1,@Name,
+           @Address, 
+           @TINNO, 
+           @EmailAddress, 
+           @Telephone, 
+           @BankName, 
+           @BankAcctNo, 
+           @BankCode, 
+           @BankAddress,
+           @Remark, 
+           @InActive,@Source,@Category,@IDNo FROM RegisterVendor)
+END
+ELSE
+BEGIN
+INSERT INTO [dbo].[RegisterVendor]
+           ([Sn]
+		   ,[Name]
+           ,[Address]
+           ,[TINNo]
+           ,[EmailAddress]
+           ,[Telephone]
+           ,[BankName]
+           ,[BankAcctNo]
+           ,[BankCode]
+           ,[BankAddress]
+           ,[Remark]
+           ,[InActive],[Source],[Category],IDNo)
+VALUES(@Sn,@Name,
+           @Address, 
+           @TINNo, 
+           @EmailAddress, 
+           @Telephone, 
+           @BankName, 
+           @BankAcctNo, 
+           @BankCode, 
+           @BankAddress,
+           @Remark, 
+           @InActive,@Source,@Category,@IDNo)
+END
+
+__________________________________________________________________________________________
