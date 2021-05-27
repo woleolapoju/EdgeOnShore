@@ -28,15 +28,16 @@ namespace Edge
             MandateNo = "";
             MandateNo = MandateNo1;
             dIndex = dIndex1;
+            if (string.IsNullOrEmpty(MandateNo))
+                    chkSaveAsNew.Visible = false;
+                else
+                    chkSaveAsNew.Visible = true;
         }
 
         private void FrmPayment_Load(object sender, EventArgs e)
         {
             try
-            {
-
-              
-
+            {   
                 MyModules.applyGridTheme(DGridList);
                 DGridList.AllowUserToDeleteRows = true;
                 cmdBeneficiary.SelectedIndex = 2;
@@ -46,10 +47,8 @@ namespace Edge
                 //DGridList.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
                 //DGridList.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
 
-
                 if (!string.IsNullOrEmpty(Convert.ToString(MandateNo).Trim(' ')))
                 {
-                   
 
                     oLoadPayments(MandateNo);
                     // lnkSuggest.Visible = true;
@@ -815,18 +814,12 @@ namespace Edge
 
         private void cmdSave_Click(object sender, EventArgs e)
         {
-
-
-
             SqlTransaction myTrans=null; //= new SqlTransaction;
             SqlConnection cnSQL = new SqlConnection(MyModules.strConnect);
             SqlCommand cmSQL = new SqlCommand(); // cnSQL.CreateCommand;
             cmSQL.Connection = cnSQL;
             try
             {
-               
-
-
                 // SqlDataReader drSQL = null;
                 // string NewMandateNo = "";
 
@@ -835,6 +828,14 @@ namespace Edge
                 {
                     MessageBox.Show("Pls. enter Mandate No", MyModules.strApptitle, MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return;
+                }
+                if (chkSaveAsNew.Visible && chkSaveAsNew.Checked)
+                {
+                    if(tMandateNo.Text.Trim(' ') == MandateNo.Trim(' '))
+                    {
+                        MessageBox.Show("New MandateNo cannot be the same as the MandateNo it is generated from", MyModules.strApptitle);
+                        return;
+                    }
                 }
 
                 if (CheckPayments(tMandateNo.Text) == true)
@@ -873,17 +874,20 @@ namespace Edge
 
                 cnSQL.Open();
 
-               
-
                 myTrans = cnSQL.BeginTransaction(IsolationLevel.Serializable);
                 cmSQL.Transaction = myTrans;
 
-                cmSQL.Parameters.Clear();
-                cmSQL.CommandText = "DeletePayment";
-                cmSQL.CommandType = CommandType.StoredProcedure;
-                cmSQL.Parameters.AddWithValue("@MandateNo", MandateNo); // tMandateNo.Text);
-                cmSQL.ExecuteNonQuery();
-
+                if (chkSaveAsNew.Visible && chkSaveAsNew.Checked)
+                {
+                }
+                else
+                {
+                    cmSQL.Parameters.Clear();
+                    cmSQL.CommandText = "DeletePayment";
+                    cmSQL.CommandType = CommandType.StoredProcedure;
+                    cmSQL.Parameters.AddWithValue("@MandateNo", MandateNo); // tMandateNo.Text);
+                    cmSQL.ExecuteNonQuery();
+                }
                 int g = 0;
                 for (i = 0; i < DGridList.Rows.Count; i++)
                 {

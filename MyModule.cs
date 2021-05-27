@@ -122,7 +122,7 @@ namespace Edge
                 cmOle.Dispose();
                 cnOle.Dispose();
 
-             fetchTheSystemParameters();
+           fetchTheSystemParameters();
 
 
             }

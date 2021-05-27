@@ -29,16 +29,19 @@
         private void InitializeComponent()
         {
             System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem("Mandate");
-            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem("Payment List");
-            System.Windows.Forms.ListViewItem listViewItem3 = new System.Windows.Forms.ListViewItem("Payment Deduction List");
-            System.Windows.Forms.ListViewItem listViewItem4 = new System.Windows.Forms.ListViewItem("School List");
-            System.Windows.Forms.ListViewItem listViewItem5 = new System.Windows.Forms.ListViewItem("Student List");
-            System.Windows.Forms.ListViewItem listViewItem6 = new System.Windows.Forms.ListViewItem("Staff List");
-            System.Windows.Forms.ListViewItem listViewItem7 = new System.Windows.Forms.ListViewItem("Vendor List");
+            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem("Payment List (Layout 1)");
+            System.Windows.Forms.ListViewItem listViewItem3 = new System.Windows.Forms.ListViewItem("Payment List (Layout 2)");
+            System.Windows.Forms.ListViewItem listViewItem4 = new System.Windows.Forms.ListViewItem("Payment Deduction List");
+            System.Windows.Forms.ListViewItem listViewItem5 = new System.Windows.Forms.ListViewItem("School List");
+            System.Windows.Forms.ListViewItem listViewItem6 = new System.Windows.Forms.ListViewItem("Student List");
+            System.Windows.Forms.ListViewItem listViewItem7 = new System.Windows.Forms.ListViewItem("Staff List");
+            System.Windows.Forms.ListViewItem listViewItem8 = new System.Windows.Forms.ListViewItem("Vendor List");
             this.lvRpt = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.cboGrpFilter = new System.Windows.Forms.ComboBox();
+            this.lblGrpFilter = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.lblReportTitle = new System.Windows.Forms.Label();
@@ -58,8 +61,6 @@
             this.lblEnd = new System.Windows.Forms.Label();
             this.dtpStartDate = new System.Windows.Forms.DateTimePicker();
             this.lblStart = new System.Windows.Forms.Label();
-            this.cboGrpFilter = new System.Windows.Forms.ComboBox();
-            this.lblGrpFilter = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -73,6 +74,7 @@
             this.columnHeader1});
             this.lvRpt.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lvRpt.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lvRpt.HideSelection = false;
             this.lvRpt.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
             listViewItem1,
             listViewItem2,
@@ -80,7 +82,8 @@
             listViewItem4,
             listViewItem5,
             listViewItem6,
-            listViewItem7});
+            listViewItem7,
+            listViewItem8});
             this.lvRpt.Location = new System.Drawing.Point(3, 3);
             this.lvRpt.Name = "lvRpt";
             this.lvRpt.Size = new System.Drawing.Size(475, 318);
@@ -134,6 +137,26 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(475, 156);
             this.panel3.TabIndex = 269;
+            // 
+            // cboGrpFilter
+            // 
+            this.cboGrpFilter.DropDownWidth = 200;
+            this.cboGrpFilter.FormattingEnabled = true;
+            this.cboGrpFilter.Location = new System.Drawing.Point(86, 56);
+            this.cboGrpFilter.Name = "cboGrpFilter";
+            this.cboGrpFilter.Size = new System.Drawing.Size(130, 21);
+            this.cboGrpFilter.TabIndex = 16;
+            // 
+            // lblGrpFilter
+            // 
+            this.lblGrpFilter.AutoSize = true;
+            this.lblGrpFilter.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblGrpFilter.ForeColor = System.Drawing.Color.Red;
+            this.lblGrpFilter.Location = new System.Drawing.Point(9, 57);
+            this.lblGrpFilter.Name = "lblGrpFilter";
+            this.lblGrpFilter.Size = new System.Drawing.Size(72, 13);
+            this.lblGrpFilter.TabIndex = 15;
+            this.lblGrpFilter.Text = "Group Filter:";
             // 
             // label2
             // 
@@ -287,7 +310,7 @@
             this.lblGrpBy.ForeColor = System.Drawing.Color.Red;
             this.lblGrpBy.Location = new System.Drawing.Point(9, 34);
             this.lblGrpBy.Name = "lblGrpBy";
-            this.lblGrpBy.Size = new System.Drawing.Size(58, 13);
+            this.lblGrpBy.Size = new System.Drawing.Size(57, 13);
             this.lblGrpBy.TabIndex = 6;
             this.lblGrpBy.Text = "Group By:";
             // 
@@ -356,26 +379,6 @@
             this.lblStart.Size = new System.Drawing.Size(61, 13);
             this.lblStart.TabIndex = 0;
             this.lblStart.Text = "Start Date:";
-            // 
-            // cboGrpFilter
-            // 
-            this.cboGrpFilter.DropDownWidth = 200;
-            this.cboGrpFilter.FormattingEnabled = true;
-            this.cboGrpFilter.Location = new System.Drawing.Point(86, 56);
-            this.cboGrpFilter.Name = "cboGrpFilter";
-            this.cboGrpFilter.Size = new System.Drawing.Size(130, 21);
-            this.cboGrpFilter.TabIndex = 16;
-            // 
-            // lblGrpFilter
-            // 
-            this.lblGrpFilter.AutoSize = true;
-            this.lblGrpFilter.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblGrpFilter.ForeColor = System.Drawing.Color.Red;
-            this.lblGrpFilter.Location = new System.Drawing.Point(9, 57);
-            this.lblGrpFilter.Name = "lblGrpFilter";
-            this.lblGrpFilter.Size = new System.Drawing.Size(72, 13);
-            this.lblGrpFilter.TabIndex = 15;
-            this.lblGrpFilter.Text = "Group Filter:";
             // 
             // FrmReports
             // 

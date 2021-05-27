@@ -132,6 +132,8 @@
             this.mnuEditRecordDgrid = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripSeparator();
             this.mnuCloneSelectedRow = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripSeparator();
+            this.mnugetTotalOfSeletedRows = new System.Windows.Forms.ToolStripMenuItem();
             this.pnlExportPay = new System.Windows.Forms.Panel();
             this.cmdCloseIt = new System.Windows.Forms.Button();
             this.MenuStrip1 = new System.Windows.Forms.MenuStrip();
@@ -144,8 +146,7 @@
             this.mnuEMandateForTSA2 = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip2 = new System.Windows.Forms.MenuStrip();
             this.mnuRemital = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripSeparator();
-            this.mnugetTotalOfSeletedRows = new System.Windows.Forms.ToolStripMenuItem();
+            this.chkSaveAsNew = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.SplitContainer1)).BeginInit();
             this.SplitContainer1.Panel1.SuspendLayout();
             this.SplitContainer1.Panel2.SuspendLayout();
@@ -222,12 +223,13 @@
             this.TVList.Margin = new System.Windows.Forms.Padding(0);
             this.TVList.Name = "TVList";
             this.TVList.SelectedImageKey = "NodeClose.bmp";
-            this.TVList.Size = new System.Drawing.Size(320, 357);
+            this.TVList.Size = new System.Drawing.Size(320, 341);
             this.TVList.TabIndex = 573;
             this.TVList.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.TV_AfterSelect);
             // 
             // Panel3
             // 
+            this.Panel3.Controls.Add(this.chkSaveAsNew);
             this.Panel3.Controls.Add(this.lnkState);
             this.Panel3.Controls.Add(this.cboInterLine);
             this.Panel3.Controls.Add(this.lnkExport);
@@ -243,9 +245,9 @@
             this.Panel3.Controls.Add(this.dtpDate);
             this.Panel3.Controls.Add(this.cmdClose);
             this.Panel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Panel3.Location = new System.Drawing.Point(4, 458);
+            this.Panel3.Location = new System.Drawing.Point(4, 442);
             this.Panel3.Name = "Panel3";
-            this.Panel3.Size = new System.Drawing.Size(314, 195);
+            this.Panel3.Size = new System.Drawing.Size(314, 211);
             this.Panel3.TabIndex = 572;
             // 
             // lnkState
@@ -274,7 +276,7 @@
             // 
             this.lnkExport.AutoSize = true;
             this.lnkExport.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lnkExport.Location = new System.Drawing.Point(191, 123);
+            this.lnkExport.Location = new System.Drawing.Point(190, 138);
             this.lnkExport.Name = "lnkExport";
             this.lnkExport.Size = new System.Drawing.Size(117, 15);
             this.lnkExport.TabIndex = 591;
@@ -287,7 +289,7 @@
             this.lnkCleanMandate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lnkCleanMandate.AutoSize = true;
             this.lnkCleanMandate.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lnkCleanMandate.Location = new System.Drawing.Point(3, 122);
+            this.lnkCleanMandate.Location = new System.Drawing.Point(200, 95);
             this.lnkCleanMandate.Name = "lnkCleanMandate";
             this.lnkCleanMandate.Size = new System.Drawing.Size(107, 15);
             this.lnkCleanMandate.TabIndex = 590;
@@ -299,7 +301,7 @@
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox1.Location = new System.Drawing.Point(0, 140);
+            this.groupBox1.Location = new System.Drawing.Point(0, 158);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(311, 3);
             this.groupBox1.TabIndex = 588;
@@ -321,7 +323,7 @@
             // 
             this.lnkPrintMandateNo.AutoSize = true;
             this.lnkPrintMandateNo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lnkPrintMandateNo.Location = new System.Drawing.Point(203, 101);
+            this.lnkPrintMandateNo.Location = new System.Drawing.Point(202, 116);
             this.lnkPrintMandateNo.Name = "lnkPrintMandateNo";
             this.lnkPrintMandateNo.Size = new System.Drawing.Size(104, 15);
             this.lnkPrintMandateNo.TabIndex = 580;
@@ -340,7 +342,7 @@
             // cmdClear
             // 
             this.cmdClear.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmdClear.Location = new System.Drawing.Point(158, 146);
+            this.cmdClear.Location = new System.Drawing.Point(154, 163);
             this.cmdClear.Name = "cmdClear";
             this.cmdClear.Size = new System.Drawing.Size(92, 46);
             this.cmdClear.TabIndex = 579;
@@ -351,9 +353,9 @@
             // cmdSave
             // 
             this.cmdSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmdSave.Location = new System.Drawing.Point(4, 145);
+            this.cmdSave.Location = new System.Drawing.Point(0, 162);
             this.cmdSave.Name = "cmdSave";
-            this.cmdSave.Size = new System.Drawing.Size(142, 46);
+            this.cmdSave.Size = new System.Drawing.Size(148, 46);
             this.cmdSave.TabIndex = 578;
             this.cmdSave.Text = "SAVE PAYMENT";
             this.cmdSave.UseVisualStyleBackColor = true;
@@ -395,7 +397,7 @@
             // cmdClose
             // 
             this.cmdClose.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmdClose.Location = new System.Drawing.Point(251, 146);
+            this.cmdClose.Location = new System.Drawing.Point(247, 163);
             this.cmdClose.Name = "cmdClose";
             this.cmdClose.Size = new System.Drawing.Size(60, 46);
             this.cmdClose.TabIndex = 12;
@@ -410,7 +412,7 @@
             this.Panel1.Controls.Add(this.tTotal);
             this.Panel1.Controls.Add(this.Label5);
             this.Panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Panel1.Location = new System.Drawing.Point(4, 414);
+            this.Panel1.Location = new System.Drawing.Point(4, 398);
             this.Panel1.Name = "Panel1";
             this.Panel1.Size = new System.Drawing.Size(314, 37);
             this.Panel1.TabIndex = 574;
@@ -596,6 +598,7 @@
             this.lvList.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.lvList.FullRowSelect = true;
             this.lvList.GridLines = true;
+            this.lvList.HideSelection = false;
             this.lvList.Location = new System.Drawing.Point(3, 56);
             this.lvList.Name = "lvList";
             this.lvList.Size = new System.Drawing.Size(860, 218);
@@ -1100,90 +1103,102 @@
             this.toolStripMenuItem3,
             this.mnugetTotalOfSeletedRows});
             this.cntxActions.Name = "ContextMenuStrip1";
-            this.cntxActions.Size = new System.Drawing.Size(215, 276);
+            this.cntxActions.Size = new System.Drawing.Size(214, 254);
             // 
             // mnuCopyAmount
             // 
             this.mnuCopyAmount.Name = "mnuCopyAmount";
-            this.mnuCopyAmount.Size = new System.Drawing.Size(214, 22);
+            this.mnuCopyAmount.Size = new System.Drawing.Size(213, 22);
             this.mnuCopyAmount.Text = "Copy Amount";
             this.mnuCopyAmount.Click += new System.EventHandler(this.mnuCopyAmount_Click);
             // 
             // mnuCopyPeriod
             // 
             this.mnuCopyPeriod.Name = "mnuCopyPeriod";
-            this.mnuCopyPeriod.Size = new System.Drawing.Size(214, 22);
+            this.mnuCopyPeriod.Size = new System.Drawing.Size(213, 22);
             this.mnuCopyPeriod.Text = "Copy Period";
             this.mnuCopyPeriod.Click += new System.EventHandler(this.mnuCopyPeriod_Click);
             // 
             // mnuCopyPaymentTypes
             // 
             this.mnuCopyPaymentTypes.Name = "mnuCopyPaymentTypes";
-            this.mnuCopyPaymentTypes.Size = new System.Drawing.Size(214, 22);
+            this.mnuCopyPaymentTypes.Size = new System.Drawing.Size(213, 22);
             this.mnuCopyPaymentTypes.Text = "Copy Payment Types";
             this.mnuCopyPaymentTypes.Click += new System.EventHandler(this.mnuCopyPaymentTypes_Click);
             // 
             // mnuPNVo
             // 
             this.mnuPNVo.Name = "mnuPNVo";
-            this.mnuPNVo.Size = new System.Drawing.Size(214, 22);
+            this.mnuPNVo.Size = new System.Drawing.Size(213, 22);
             this.mnuPNVo.Text = "Copy PVNo";
             this.mnuPNVo.Click += new System.EventHandler(this.mnuPNVo_Click);
             // 
             // ToolStripMenuItem1
             // 
             this.ToolStripMenuItem1.Name = "ToolStripMenuItem1";
-            this.ToolStripMenuItem1.Size = new System.Drawing.Size(211, 6);
+            this.ToolStripMenuItem1.Size = new System.Drawing.Size(210, 6);
             // 
             // mnuClearPaymentDetails1
             // 
             this.mnuClearPaymentDetails1.Name = "mnuClearPaymentDetails1";
-            this.mnuClearPaymentDetails1.Size = new System.Drawing.Size(214, 22);
+            this.mnuClearPaymentDetails1.Size = new System.Drawing.Size(213, 22);
             this.mnuClearPaymentDetails1.Text = "Clear Payment Details";
             this.mnuClearPaymentDetails1.Click += new System.EventHandler(this.mnuClearPaymentDetails1_Click);
             // 
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(211, 6);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(210, 6);
             // 
             // mnuCopyPayDetail2
             // 
             this.mnuCopyPayDetail2.Name = "mnuCopyPayDetail2";
-            this.mnuCopyPayDetail2.Size = new System.Drawing.Size(214, 22);
+            this.mnuCopyPayDetail2.Size = new System.Drawing.Size(213, 22);
             this.mnuCopyPayDetail2.Text = "Copy Payment Detail";
             this.mnuCopyPayDetail2.Click += new System.EventHandler(this.mnuCopyPayDetail2_Click);
             // 
             // mnuGeneratePayDetails
             // 
             this.mnuGeneratePayDetails.Name = "mnuGeneratePayDetails";
-            this.mnuGeneratePayDetails.Size = new System.Drawing.Size(214, 22);
+            this.mnuGeneratePayDetails.Size = new System.Drawing.Size(213, 22);
             this.mnuGeneratePayDetails.Text = "Generate Payment Details";
             this.mnuGeneratePayDetails.Click += new System.EventHandler(this.mnuGeneratePayDetails_Click);
             // 
             // toolStripMenuItem4
             // 
             this.toolStripMenuItem4.Name = "toolStripMenuItem4";
-            this.toolStripMenuItem4.Size = new System.Drawing.Size(211, 6);
+            this.toolStripMenuItem4.Size = new System.Drawing.Size(210, 6);
             // 
             // mnuEditRecordDgrid
             // 
             this.mnuEditRecordDgrid.Name = "mnuEditRecordDgrid";
-            this.mnuEditRecordDgrid.Size = new System.Drawing.Size(214, 22);
+            this.mnuEditRecordDgrid.Size = new System.Drawing.Size(213, 22);
             this.mnuEditRecordDgrid.Text = "Edit Record";
             this.mnuEditRecordDgrid.Click += new System.EventHandler(this.mnuEditRecordDgrid_Click);
             // 
             // toolStripMenuItem5
             // 
             this.toolStripMenuItem5.Name = "toolStripMenuItem5";
-            this.toolStripMenuItem5.Size = new System.Drawing.Size(211, 6);
+            this.toolStripMenuItem5.Size = new System.Drawing.Size(210, 6);
             // 
             // mnuCloneSelectedRow
             // 
             this.mnuCloneSelectedRow.Name = "mnuCloneSelectedRow";
-            this.mnuCloneSelectedRow.Size = new System.Drawing.Size(214, 22);
+            this.mnuCloneSelectedRow.Size = new System.Drawing.Size(213, 22);
             this.mnuCloneSelectedRow.Text = "Clone Selected Row(s)";
             this.mnuCloneSelectedRow.Click += new System.EventHandler(this.mnuCloneSelectedRow_Click);
+            // 
+            // toolStripMenuItem3
+            // 
+            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(210, 6);
+            // 
+            // mnugetTotalOfSeletedRows
+            // 
+            this.mnugetTotalOfSeletedRows.Name = "mnugetTotalOfSeletedRows";
+            this.mnugetTotalOfSeletedRows.Size = new System.Drawing.Size(213, 22);
+            this.mnugetTotalOfSeletedRows.Text = "Get Total of seleted Row(s)";
+            this.mnugetTotalOfSeletedRows.Click += new System.EventHandler(this.mnugetTotalOfSeletedRows_Click);
             // 
             // pnlExportPay
             // 
@@ -1315,17 +1330,18 @@
             this.mnuRemital.Text = "eMandate For Remital";
             this.mnuRemital.Click += new System.EventHandler(this.mnuRemital_Click);
             // 
-            // toolStripMenuItem3
+            // chkSaveAsNew
             // 
-            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(211, 6);
-            // 
-            // mnugetTotalOfSeletedRows
-            // 
-            this.mnugetTotalOfSeletedRows.Name = "mnugetTotalOfSeletedRows";
-            this.mnugetTotalOfSeletedRows.Size = new System.Drawing.Size(214, 22);
-            this.mnugetTotalOfSeletedRows.Text = "Get Total of seleted Row(s)";
-            this.mnugetTotalOfSeletedRows.Click += new System.EventHandler(this.mnugetTotalOfSeletedRows_Click);
+            this.chkSaveAsNew.AutoSize = true;
+            this.chkSaveAsNew.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkSaveAsNew.ForeColor = System.Drawing.Color.Red;
+            this.chkSaveAsNew.Location = new System.Drawing.Point(6, 135);
+            this.chkSaveAsNew.Name = "chkSaveAsNew";
+            this.chkSaveAsNew.Size = new System.Drawing.Size(149, 19);
+            this.chkSaveAsNew.TabIndex = 598;
+            this.chkSaveAsNew.Text = "Save As New Mandate";
+            this.chkSaveAsNew.UseVisualStyleBackColor = true;
+            this.chkSaveAsNew.Visible = false;
             // 
             // FrmPayment
             // 
@@ -1488,5 +1504,6 @@
         private System.Windows.Forms.ToolStripMenuItem mnuCloneSelectedRow;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem3;
         private System.Windows.Forms.ToolStripMenuItem mnugetTotalOfSeletedRows;
+        private System.Windows.Forms.CheckBox chkSaveAsNew;
     }
 }

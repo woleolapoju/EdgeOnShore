@@ -93,7 +93,40 @@ namespace Edge
 
         }
 
-        private void ConfigureCrystalReports()
+    //    private void ConfigureCrystalReports()
+    //    {
+    //        Try
+    //            {
+    //            ConnectionInfo myConnectionInfo = new ConnectionInfo();
+    //            // Dim rpt As New rptCardPrinting()
+
+    //            Tables myTables = myReportDocument.Database.Tables;
+    //            foreach (Table myTable in myTables)
+    //            {
+    //                //For Each myTable As CrystalDecisions.CrystalReports.Engine.Table In myTables
+    //                TableLogOnInfo myTableLogonInfo = myTable.LogOnInfo;
+    //                myConnectionInfo.ServerName = MyModules.ServerName;
+    //                myConnectionInfo.DatabaseName = "";
+    //                myConnectionInfo.UserID = MyModules.UserID;
+    //                myConnectionInfo.Password = MyModules.Password;
+    //                myTableLogonInfo.ConnectionInfo = myConnectionInfo;
+    //                myTable.ApplyLogOnInfo(myTableLogonInfo);
+    //            }
+    //    //        frmReportViewer.CrystalReportViewer1.ReportSource = rpt
+
+    //    //rpt.SetParameterValue("prt", txtCnicPassport.Text)
+    //    //rpt.PrintToPrinter(1, False, 0, 0)
+    //    //rpt.Close()
+    //    //rpt.Dispose()
+
+
+    // ex As Exception
+    //    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+
+    //End Try
+    //    }
+
+            private void ConfigureCrystalReports()
         {
             try
             {
@@ -111,6 +144,7 @@ namespace Edge
                     ConInfo.ConnectionInfo.UserID = MyModules.UserID;
                 }
 
+                myReportDocument.DataSourceConnections.Clear();
                 for (intCounter = 0; intCounter < myReportDocument.Database.Tables.Count; intCounter++)
                 {
                     myReportDocument.Database.Tables[intCounter].ApplyLogOnInfo(ConInfo);

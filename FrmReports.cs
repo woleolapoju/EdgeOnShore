@@ -35,7 +35,14 @@ namespace Edge
                     case "Mandate":
                         lblMandateNo.ForeColor = Color.Red;
                         break;
-                    case "Payment List":
+                    case "Payment List (Layout 1)":
+                        lblStart.ForeColor = Color.Red;
+                        lblEnd.ForeColor = Color.Red;
+                        lblGrpBy.ForeColor = Color.Red;
+                        lblfocus.ForeColor = Color.Red;
+                        lblGrpFilter.ForeColor = Color.Red;
+                        break;
+                    case "Payment List (Layout 2)":
                         lblStart.ForeColor = Color.Red;
                         lblEnd.ForeColor = Color.Red;
                         lblGrpBy.ForeColor = Color.Red;
@@ -207,7 +214,7 @@ namespace Edge
 
             switch (lblReportTitle.Text)
             {
-                case "Payment List":
+                case "Payment List (Layout 1)":
                     RptFilename = new Reports.PaymentList();
                     if (chkSchool.Checked)
                         selformular = " {RptPaymentWithRegionAndCategory.Source}='SCHOOL'";
@@ -250,6 +257,50 @@ namespace Edge
                             break;
                     }
                     break;
+                case "Payment List (Layout 2)":
+                    RptFilename = new Reports.PaymentList2();
+                    if (chkSchool.Checked)
+                        selformular = " {RptPaymentWithRegionAndCategory.Source}='SCHOOL'";
+                    if (chkStudent.Checked)
+                        selformular = selformular + (selformular == "" ? "" : " OR ") + " {RptPaymentWithRegionAndCategory.Source}='STUDENT'";
+                    if (chkVendor.Checked)
+                        selformular = selformular + (selformular == "" ? "" : " OR ") + " {RptPaymentWithRegionAndCategory.Source}='VENDOR'";
+                    if (chkStaff.Checked)
+                        selformular = selformular + (selformular == "" ? "" : " OR ") + " {RptPaymentWithRegionAndCategory.Source}='STAFF'";
+
+                    if (selformular != "")
+                        selformular = "(" + selformular + ")";
+
+                    if (tstartdate != "")
+                        selformular = selformular + (selformular == "" ? "" : " AND ") + " {RptPaymentWithRegionAndCategory.PayValueDate}>=" + tstartdate;
+
+                    if (tenddate != "")
+                        selformular = selformular + (selformular == "" ? "" : " AND ") + " {RptPaymentWithRegionAndCategory.PayValueDate}<=" + tenddate;
+
+                    if (cboGrpFilter.Text != "<ALL>" && cboGrpBy.Text == "Region")
+                        selformular = selformular + (selformular == "" ? "" : " AND ") + " {RptPaymentWithRegionAndCategory.Region}='" + cboGrpFilter.Text + "'";
+                    if (cboGrpFilter.Text != "<ALL>" && cboGrpBy.Text == "Category")
+                        selformular = selformular + (selformular == "" ? "" : " AND ") + " {RptPaymentWithRegionAndCategory.Category}='" + cboGrpFilter.Text + "'";
+                    if (cboGrpFilter.Text != "<ALL>" && cboGrpBy.Text == "Intervention Line")
+                        selformular = selformular + (selformular == "" ? "" : " AND ") + " {RptPaymentWithRegionAndCategory.InterventionLine}='" + cboGrpFilter.Text + "'";
+
+                    switch (cboGrpBy.Text)
+                    {
+                        case "Region":
+                            RptFilename.DataDefinition.FormulaFields["Grp"].Text = "{RptPaymentWithRegionAndCategory.Region}";
+                            break;
+                        case "Category":
+                            RptFilename.DataDefinition.FormulaFields["Grp"].Text = "{RptPaymentWithRegionAndCategory.Category}";
+                            break;
+                        case "Intervention Line":
+                            RptFilename.DataDefinition.FormulaFields["Grp"].Text = "{RptPaymentWithRegionAndCategory.InterventionLine}";
+                            break;
+                        default:
+                            RptFilename.DataDefinition.FormulaFields["Grp"].Text = "";
+                            break;
+                    }
+                    break;
+
                 case "School List":
                     RptFilename = new Reports.SchoolList();
                     if (cboGrpFilter.Text != "<ALL>" && cboGrpBy.Text == "Region")

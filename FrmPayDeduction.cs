@@ -29,6 +29,10 @@ namespace Edge
             MandateNo = MandateNo1;
             dIndex = dIndex1;
             oAction = dAction;
+            //if (string.IsNullOrEmpty(MandateNo))
+            //    chkSaveAsNew.Visible = false;
+            //else
+            //    chkSaveAsNew.Visible = true;
         }
 
         private void FrmPayDeduction_Load(object sender, EventArgs e)
@@ -580,6 +584,15 @@ namespace Edge
                     return;
                 }
 
+                //if (chkSaveAsNew.Visible && chkSaveAsNew.Checked)
+                //{
+                //    if (tMandateNo.Text.Trim(' ') == MandateNo.Trim(' '))
+                //    {
+                //        MessageBox.Show("New MandateNo cannot be the same as the MandateNo it is generated from", MyModules.strApptitle);
+                //        return;
+                //    }
+                //}
+
                 if (CheckPayments(tMandateNo.Text) == true)
                 {
                     if (MessageBox.Show("Records already exist for this Mandate No...Continue (y/n)?" + "\r" + "\n" + "If you choose to Continue, the previous would be overwritten", MyModules.strApptitle, MessageBoxButtons.YesNo, MessageBoxIcon.Error) == DialogResult.No)
@@ -614,12 +627,18 @@ namespace Edge
                 myTrans = cnSQL.BeginTransaction(IsolationLevel.Serializable);
                 cmSQL.Transaction = myTrans;
 
-                cmSQL.Parameters.Clear();
-                cmSQL.CommandText = "DeletePaymentDeductions";
-                cmSQL.CommandType = CommandType.StoredProcedure;
-                cmSQL.Parameters.AddWithValue("@MandateNo", MandateNo); // tMandateNo.Text);
-                cmSQL.ExecuteNonQuery();
-                MessageBox.Show(MandateNo);
+                //if (chkSaveAsNew.Visible && chkSaveAsNew.Checked)
+                //{
+                //}
+                //else
+                //{
+                    cmSQL.Parameters.Clear();
+                    cmSQL.CommandText = "DeletePaymentDeductions";
+                    cmSQL.CommandType = CommandType.StoredProcedure;
+                    cmSQL.Parameters.AddWithValue("@MandateNo", MandateNo); // tMandateNo.Text);
+                    cmSQL.ExecuteNonQuery();
+                //}
+            //    MessageBox.Show(MandateNo);
 
                 int g = 0;
                 for (i = 0; i < DGridList.Rows.Count; i++)

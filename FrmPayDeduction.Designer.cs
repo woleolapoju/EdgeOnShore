@@ -104,10 +104,6 @@
             this.lblListCount = new System.Windows.Forms.Label();
             this.chkAll = new System.Windows.Forms.CheckBox();
             this.DGridList = new System.Windows.Forms.DataGridView();
-            this.cntxActions = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.mnuCopyAmount = new System.Windows.Forms.ToolStripMenuItem();
-            this.ToolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
-            this.mnuPNVo = new System.Windows.Forms.ToolStripMenuItem();
             this.RefNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Sn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tName = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -127,6 +123,11 @@
             this.Source = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Remark = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.MainAction = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cntxActions = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.mnuCopyAmount = new System.Windows.Forms.ToolStripMenuItem();
+            this.ToolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
+            this.mnuPNVo = new System.Windows.Forms.ToolStripMenuItem();
+            this.chkSaveAsNew = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.SplitContainer1)).BeginInit();
             this.SplitContainer1.Panel1.SuspendLayout();
             this.SplitContainer1.Panel2.SuspendLayout();
@@ -208,7 +209,7 @@
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 80F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(314, 269);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(314, 257);
             this.tableLayoutPanel3.TabIndex = 579;
             // 
             // TVList
@@ -224,7 +225,7 @@
             this.TVList.Margin = new System.Windows.Forms.Padding(0);
             this.TVList.Name = "TVList";
             this.TVList.SelectedImageKey = "NodeClose.bmp";
-            this.TVList.Size = new System.Drawing.Size(315, 174);
+            this.TVList.Size = new System.Drawing.Size(315, 162);
             this.TVList.TabIndex = 592;
             this.TVList.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.TV_AfterSelect);
             // 
@@ -280,7 +281,7 @@
             this.tVAT.Name = "tVAT";
             this.tVAT.Size = new System.Drawing.Size(32, 25);
             this.tVAT.TabIndex = 579;
-            this.tVAT.Text = "5";
+            this.tVAT.Text = "7.5";
             // 
             // btnVAT
             // 
@@ -347,6 +348,7 @@
             // 
             // Panel3
             // 
+            this.Panel3.Controls.Add(this.chkSaveAsNew);
             this.Panel3.Controls.Add(this.lnkState);
             this.Panel3.Controls.Add(this.cboInterLine);
             this.Panel3.Controls.Add(this.lnkSuggest);
@@ -362,9 +364,9 @@
             this.Panel3.Controls.Add(this.dtpDate);
             this.Panel3.Controls.Add(this.cmdClose);
             this.Panel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Panel3.Location = new System.Drawing.Point(4, 376);
+            this.Panel3.Location = new System.Drawing.Point(4, 364);
             this.Panel3.Name = "Panel3";
-            this.Panel3.Size = new System.Drawing.Size(314, 197);
+            this.Panel3.Size = new System.Drawing.Size(314, 209);
             this.Panel3.TabIndex = 572;
             // 
             // lnkState
@@ -404,7 +406,7 @@
             // 
             this.lnkExport.AutoSize = true;
             this.lnkExport.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lnkExport.Location = new System.Drawing.Point(191, 125);
+            this.lnkExport.Location = new System.Drawing.Point(191, 135);
             this.lnkExport.Name = "lnkExport";
             this.lnkExport.Size = new System.Drawing.Size(117, 15);
             this.lnkExport.TabIndex = 591;
@@ -417,7 +419,7 @@
             this.lnkCleanMandate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lnkCleanMandate.AutoSize = true;
             this.lnkCleanMandate.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lnkCleanMandate.Location = new System.Drawing.Point(8, 125);
+            this.lnkCleanMandate.Location = new System.Drawing.Point(199, 93);
             this.lnkCleanMandate.Name = "lnkCleanMandate";
             this.lnkCleanMandate.Size = new System.Drawing.Size(107, 15);
             this.lnkCleanMandate.TabIndex = 590;
@@ -429,7 +431,7 @@
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox1.Location = new System.Drawing.Point(0, 142);
+            this.groupBox1.Location = new System.Drawing.Point(0, 153);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(311, 3);
             this.groupBox1.TabIndex = 588;
@@ -439,7 +441,7 @@
             // 
             this.lnkPrintMandateNo.AutoSize = true;
             this.lnkPrintMandateNo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lnkPrintMandateNo.Location = new System.Drawing.Point(203, 103);
+            this.lnkPrintMandateNo.Location = new System.Drawing.Point(203, 113);
             this.lnkPrintMandateNo.Name = "lnkPrintMandateNo";
             this.lnkPrintMandateNo.Size = new System.Drawing.Size(104, 15);
             this.lnkPrintMandateNo.TabIndex = 580;
@@ -458,7 +460,7 @@
             // cmdClear
             // 
             this.cmdClear.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmdClear.Location = new System.Drawing.Point(158, 148);
+            this.cmdClear.Location = new System.Drawing.Point(158, 159);
             this.cmdClear.Name = "cmdClear";
             this.cmdClear.Size = new System.Drawing.Size(92, 46);
             this.cmdClear.TabIndex = 579;
@@ -469,7 +471,7 @@
             // cmdSave
             // 
             this.cmdSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmdSave.Location = new System.Drawing.Point(4, 147);
+            this.cmdSave.Location = new System.Drawing.Point(4, 158);
             this.cmdSave.Name = "cmdSave";
             this.cmdSave.Size = new System.Drawing.Size(142, 46);
             this.cmdSave.TabIndex = 578;
@@ -513,7 +515,7 @@
             // cmdClose
             // 
             this.cmdClose.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmdClose.Location = new System.Drawing.Point(251, 148);
+            this.cmdClose.Location = new System.Drawing.Point(251, 159);
             this.cmdClose.Name = "cmdClose";
             this.cmdClose.Size = new System.Drawing.Size(60, 46);
             this.cmdClose.TabIndex = 12;
@@ -528,7 +530,7 @@
             this.Panel1.Controls.Add(this.tTotal);
             this.Panel1.Controls.Add(this.Label5);
             this.Panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Panel1.Location = new System.Drawing.Point(4, 332);
+            this.Panel1.Location = new System.Drawing.Point(4, 320);
             this.Panel1.Name = "Panel1";
             this.Panel1.Size = new System.Drawing.Size(314, 37);
             this.Panel1.TabIndex = 574;
@@ -672,6 +674,7 @@
             this.lvList.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.lvList.FullRowSelect = true;
             this.lvList.GridLines = true;
+            this.lvList.HideSelection = false;
             this.lvList.Location = new System.Drawing.Point(3, 56);
             this.lvList.Name = "lvList";
             this.lvList.Size = new System.Drawing.Size(667, 183);
@@ -944,34 +947,6 @@
             this.DGridList.CurrentCellDirtyStateChanged += new System.EventHandler(this.DGridList_CurrentCellDirtyStateChanged);
             this.DGridList.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.DGridList_DataError);
             // 
-            // cntxActions
-            // 
-            this.cntxActions.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.mnuCopyAmount,
-            this.ToolStripMenuItem1,
-            this.mnuPNVo});
-            this.cntxActions.Name = "ContextMenuStrip1";
-            this.cntxActions.Size = new System.Drawing.Size(150, 54);
-            // 
-            // mnuCopyAmount
-            // 
-            this.mnuCopyAmount.Name = "mnuCopyAmount";
-            this.mnuCopyAmount.Size = new System.Drawing.Size(149, 22);
-            this.mnuCopyAmount.Text = "Copy Amount";
-            this.mnuCopyAmount.Click += new System.EventHandler(this.mnuCopyAmount_Click);
-            // 
-            // ToolStripMenuItem1
-            // 
-            this.ToolStripMenuItem1.Name = "ToolStripMenuItem1";
-            this.ToolStripMenuItem1.Size = new System.Drawing.Size(146, 6);
-            // 
-            // mnuPNVo
-            // 
-            this.mnuPNVo.Name = "mnuPNVo";
-            this.mnuPNVo.Size = new System.Drawing.Size(149, 22);
-            this.mnuPNVo.Text = "Copy PVNo";
-            this.mnuPNVo.Click += new System.EventHandler(this.mnuPNVo_Click);
-            // 
             // RefNo
             // 
             this.RefNo.DataPropertyName = "Sn";
@@ -1109,6 +1084,47 @@
             this.MainAction.HeaderText = "MainAction";
             this.MainAction.Name = "MainAction";
             this.MainAction.Width = 5;
+            // 
+            // cntxActions
+            // 
+            this.cntxActions.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mnuCopyAmount,
+            this.ToolStripMenuItem1,
+            this.mnuPNVo});
+            this.cntxActions.Name = "ContextMenuStrip1";
+            this.cntxActions.Size = new System.Drawing.Size(150, 54);
+            // 
+            // mnuCopyAmount
+            // 
+            this.mnuCopyAmount.Name = "mnuCopyAmount";
+            this.mnuCopyAmount.Size = new System.Drawing.Size(149, 22);
+            this.mnuCopyAmount.Text = "Copy Amount";
+            this.mnuCopyAmount.Click += new System.EventHandler(this.mnuCopyAmount_Click);
+            // 
+            // ToolStripMenuItem1
+            // 
+            this.ToolStripMenuItem1.Name = "ToolStripMenuItem1";
+            this.ToolStripMenuItem1.Size = new System.Drawing.Size(146, 6);
+            // 
+            // mnuPNVo
+            // 
+            this.mnuPNVo.Name = "mnuPNVo";
+            this.mnuPNVo.Size = new System.Drawing.Size(149, 22);
+            this.mnuPNVo.Text = "Copy PVNo";
+            this.mnuPNVo.Click += new System.EventHandler(this.mnuPNVo_Click);
+            // 
+            // chkSaveAsNew
+            // 
+            this.chkSaveAsNew.AutoSize = true;
+            this.chkSaveAsNew.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkSaveAsNew.ForeColor = System.Drawing.Color.Red;
+            this.chkSaveAsNew.Location = new System.Drawing.Point(5, 131);
+            this.chkSaveAsNew.Name = "chkSaveAsNew";
+            this.chkSaveAsNew.Size = new System.Drawing.Size(149, 19);
+            this.chkSaveAsNew.TabIndex = 601;
+            this.chkSaveAsNew.Text = "Save As New Mandate";
+            this.chkSaveAsNew.UseVisualStyleBackColor = true;
+            this.chkSaveAsNew.Visible = false;
             // 
             // FrmPayDeduction
             // 
@@ -1248,5 +1264,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Source;
         private System.Windows.Forms.DataGridViewTextBoxColumn Remark;
         private System.Windows.Forms.DataGridViewTextBoxColumn MainAction;
+        private System.Windows.Forms.CheckBox chkSaveAsNew;
     }
 }
